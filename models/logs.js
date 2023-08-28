@@ -7,15 +7,18 @@ const logsSchema = new Schema(
     title: { type: String },
     entry: { type: String },
 
-    shipIsBroken : Boolean
-
-    // likes: { type: Number, default: 0 },
-    //sponsored: { type: Boolean, default: false },
+    shipIsBroken: Boolean,
   },
   { timestamps: true }
 );
 
 {
+  /*const logs = [
+        {
+            title: " hawaii ",
+            shipIsBroken : true,
+        }
+    ]*/
 }
-const log = model("log", logsSchema);
-module.exports = log;
+const logs = model("logs", logsSchema);
+module.exports = logs;

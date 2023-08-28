@@ -6,7 +6,12 @@ const app = express();
 
 const mongoose = require("mongoose");
 
+const logs = require("./models/logs.js")
+
 const methodOverride = require('method-override');
+
+const mongoURI = process.env.MONGO_URI;
+console.log(mongoURI)
 
 //connect with mongo
 mongoose.connect(process.env.MONGO_URI, {
@@ -45,36 +50,41 @@ app.get("/", (req, res) => {
   });
 
   //This route handler renders an Index view, 
-//passing in the pokemons data for rendering. I
-app.get("/logs/", (req, res) => {
+//passing in the logs data for rendering. I
+//index routes
+app.get("/logs/", async function (req, res) {
+    const foundLogs = await logs.find({});
     res.render("Index", {
-      log: logs,
+      logs: foundLogs,
     });
   });
 
 //put this above your Show route
-app.get("/logs/New", (req, res) => {
+
+app.get("/new/", (req, res) => {
     res.render("New");
   });
 
-  app.post("/logs", async(req, res) => {
+  //create = POST
+  app.post("/", async(req, res) => {
     console.log(req.body);
     if (req.body.shipIsBroken === "on") {
       req.body.shipIsBroken = true;
     } else {
       req.body.shipIsBroken = false;
     }
-   await New.create(req.body);
-    console.log("This is the captians logs", logs);
-    res.send("data recieved");
+  const createdLog =  await logs.create(req.body);
+    console.log("This is the captians logs", createdLog);
+    res.redirect("/logs");
   });
 
   //show
 //This route handler renders a Show view for a specific Pokémon at the given index.
-app.get("/logs/:index", (req, res) => {
+app.get("/logs/:id", async (req, res) => {
+    const oneLog = await logs.findById((req.params.id))
     res.render("Show", {
       //second param must be an object
-      log: logs[req.params.index],
+      logs: oneLog
     });
   });
 

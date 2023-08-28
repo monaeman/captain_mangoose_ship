@@ -13,6 +13,7 @@ function New() {
         <input type="checkbox" id="shipIsBroken" name="shipIsBroken" />
         <br />
         <input type="submit" name="" value="Submit" />
+        <a href= "/logs/"> Back</a>
       </form>
     </div>
   );

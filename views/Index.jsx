@@ -4,18 +4,18 @@ const myStyle = {
   backgroundColor: "pink",
 };
 
-function Index({ log }) {
+function Index({ logs }) {
   return (
     <div style={myStyle}>
       <nav>
         <a href="/logs/new">Create New log</a>
       </nav>
       <h1>See All the Logs</h1>
-      {log.map((log, i) => {
+      {logs.map((logs, i) => {
         return (
           <li key={i}>
             {" "}
-            <a href={`logs/${log.id}`}>{log.name} </a>
+            <a href={`logs/${logs.id}`}>{logs.title} </a>
           </li>
         );
       })}
