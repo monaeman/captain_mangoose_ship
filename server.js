@@ -85,6 +85,14 @@ app.get("/logs/:id", async (req, res) => {
   });
 });
 
+//Edit
+app.get('/logs/:id/edit', async(req, res)=>{
+    const foundLogs = await logs.findById(req.params.id)
+    res.render('Edit', {
+      logs: foundLogs
+    })
+  })
+
 app.listen(5008, () => {
   console.log("listening");
 });
