@@ -69,6 +69,14 @@ app.get("/logs/New", (req, res) => {
     res.send("data recieved");
   });
 
+  //show
+//This route handler renders a Show view for a specific Pokémon at the given index.
+app.get("/logs/:index", (req, res) => {
+    res.render("Show", {
+      //second param must be an object
+      log: logs[req.params.index],
+    });
+  });
 
 
 app.listen(5008, () => {

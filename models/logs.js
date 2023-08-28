@@ -4,8 +4,8 @@ const model = mongoose.model; // shorthand for model function
 
 const logsSchema = new Schema(
   {
-    name: { type: String },
-    img: { type: String },
+    title: { type: String },
+    entry: { type: String },
 
     shipIsBroken : Boolean
 

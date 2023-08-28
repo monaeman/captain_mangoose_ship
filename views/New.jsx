@@ -6,7 +6,7 @@ function New() {
       <form action="/logs" method="POST">
         Title: <input type="text" id="title" name="title" required />
         <br />
-        logs:
+        Entry:
         <textarea id="entry" name="entry" rows="4" required />
         <br />
         Is Ship Broken? :
