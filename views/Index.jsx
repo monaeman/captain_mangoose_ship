@@ -21,6 +21,9 @@ function Index({ logs }) {
                 {" "}
                 <a href={`/logs/${logs.id}`}>{logs.title} </a>
                 <br />
+                <form method='POST' action={`/logs/${logs._id}?_method=DELETE`}  value="DELETE" >
+                <input type='submit' value="DELETE" />
+              </form>
                 <a href={`/logs/${logs._id}/edit`}>Edit Log </a>
               </li>
             );
