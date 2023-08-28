@@ -76,7 +76,7 @@ app.post("/logs", async (req, res) => {
 });
 
 //show
-//This route handler renders a Show view for a specific Pokémon at the given index.
+//This route handler renders a Show view for a specific log at the given index.
 app.get("/logs/:id", async (req, res) => {
   const oneLog = await logs.findById(req.params.id);
   res.render("Show", {
@@ -86,11 +86,29 @@ app.get("/logs/:id", async (req, res) => {
 });
 
 //Edit
-app.get('/logs/:id/edit', async(req, res)=>{
-    const foundLogs = await logs.findById(req.params.id)
-    res.render('Edit', {
-      logs: foundLogs
-    })
+app.get("/logs/:id/edit", async (req, res) => {
+  const foundLogs = await logs.findById(req.params.id);
+  res.render("Edit", {
+    logs: foundLogs,
+  });
+});
+
+//update
+app.put("/logs/:id", async (req, res) => {
+  //verify if checkbox is clicked
+  req.body.shipIsBroken === "on"
+    ? (req.body.shipIsBroken = true)
+    : (req.body.shipIsBroken = false);
+
+  //find the log and update by id
+  await logs.findByIdAndUpdate(req.params.id, req.body);
+  res.redirect(`/logs/${req.params.id}`);
+});
+
+//delete
+app.delete('/logs/:id', async(req, res)=> {
+    await logs.findByIdAndRemove(req.params.id)
+    res.redirect('/logs')
   })
 
 app.listen(5008, () => {
