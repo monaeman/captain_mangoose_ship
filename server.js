@@ -41,10 +41,19 @@ app.use(methodOverride('_method'));
 //root url
 app.get("/", (req, res) => {
     res.send("<h1> Captain Mangoose Logs</h1>");
+
+  });
+
+  //This route handler renders an Index view, 
+//passing in the pokemons data for rendering. I
+app.get("/logs/", (req, res) => {
+    res.render("Index", {
+      log: logs,
+    });
   });
 
 //put this above your Show route
-app.get("/logs/new", (req, res) => {
+app.get("/logs/New", (req, res) => {
     res.render("New");
   });
 
